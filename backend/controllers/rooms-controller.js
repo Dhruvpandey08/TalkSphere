@@ -3,23 +3,21 @@ const roomService = require('../services/room-service');
 
 class RoomsController {
     async create(req, res) {
-        // room
-        const { topic, roomType } = req.body;
-
-        if (!topic || !roomType) {
-            return res
-                .status(400)
-                .json({ message: 'All fields are required!' });
+        const { topic, roomType, ownerId } = req.body; // Pass ownerId in request body
+    
+        if (!topic || !roomType || !ownerId) {
+            return res.status(400).json({ message: 'All fields are required!' });
         }
-
+    
         const room = await roomService.create({
             topic,
             roomType,
-            ownerId: req.user._id,
+            ownerId: ownerId, // Use ownerId from the request body
         });
-
+    
         return res.json(new RoomDto(room));
     }
+    
 
     async index(req, res) {
         const rooms = await roomService.getAllRooms(['open']);

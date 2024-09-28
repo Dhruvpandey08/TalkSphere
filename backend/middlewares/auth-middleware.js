@@ -1,4 +1,4 @@
-const tokenService = require('../services/token-service');
+/*const tokenService = require('../services/token-service');
 
 module.exports = async function (req, res, next) {
     try {
@@ -16,3 +16,4 @@ module.exports = async function (req, res, next) {
         res.status(401).json({ message: 'Invalid token' });
     }
 };
+*/

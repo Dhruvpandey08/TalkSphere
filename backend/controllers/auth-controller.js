@@ -127,12 +127,12 @@ class AuthController {
   }
 
   async logout(req, res) {
-    const { refreshToken } = req.cookies;
-    await tokenService.removeToken(refreshToken);
+    // If you don't want to track logout, you can remove token-related logic
     res.clearCookie("refreshToken");
     res.clearCookie("accessToken");
-    res.json({ user: null, auth: false });
-  }
+    res.json({ message: 'Logged out successfully' });
+}
+
 
   setAuthCookies(res, refreshToken, accessToken) {
     const maxAge = 1000 * 60 * 60 * 24 * 30; // 30 days
