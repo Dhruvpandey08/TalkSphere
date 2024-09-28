@@ -23,7 +23,7 @@ const Navigation = () => {
     async function logoutUser() {
         try {
             const { data } = await logout();
-            dispatch(setAuth(data));
+            dispatch(setAuth(null));
         } catch (err) {
             console.log(err);
         }
@@ -42,7 +42,7 @@ const Navigation = () => {
                         <img
                             className={styles.avatar}
                             src={
-                                user.avatar
+                                user && user.avatar
                                     ? user.avatar
                                     : '/images/monkey-avatar.png'
                             }
